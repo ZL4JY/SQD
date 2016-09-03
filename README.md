@@ -8,9 +8,11 @@ As P25 communications became popular with amateur radio operators, surplus Quant
 Various amateur networks have since been developed based on this Cisco concept using cheap routers to encapsulate the native Quantar V.24 HDLC into frames, using Cisco’s serial tunnelling protocol called STUN (not to be confused with the session traversal utility for NAT).  STUN conveys the encapsulated V.24 over an IP network using TCP.  Methods to do the same thing using UDP usually retain the Cisco router to encapsulate V.24 then convert TCP to UDP by some means, usually software on a Linux platform. As UDP the V.24 frames are 'naked' in that the STUN encapsualtion wrapper is discarded. UDP is often used in multicast mode over a closed network or VPN.
 
 The purpose of this dissector, actually two almost identical dissectors, is to allow convenient viewing of the Quantar V.24 protocol as carried by TCP or UDP.  The port used for Cisco STUN transport is usually 1994 and for UDP the port 23456 or 30000 is common.
-To make these dissectors work with Wireshark you need to edit the init.lua file found in the Wireshark install directory in Program Files (Windows):
+To make these dissectors work with Wireshark you need to edit the init.lua file found in the Wireshark install directory in Program Files (Windows).
+
+Set:
 ```
-Set disable_lua = false 
+disable_lua = false 
 ```  
 Then at the very end of the file add:
 ```
