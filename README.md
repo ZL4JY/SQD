@@ -21,6 +21,10 @@ Then at the very end of the file add:
   
 Where the path is wherever you’ve put the two dissector files.
 
+If you are using Linux, start Wireshark and go to Help -> About Wireshark -> Folders You need to know the global plugin folder and global configuaration folder. Copy the two dissector files into the global plugin folder. Check init.lua in the global configuration folder and make sure lua is enabled: 
+
+disable_lua = false
+
 Then run Wireshark and go to Analyze > Enable Protocols and search down until you find the two QV24 entries and tick them.  Don’t untick all the other stuff. Enjoy.
 
 Note that works that make use of Wireshark's API are covered by GPL and therefore this code is provided under GPL.
