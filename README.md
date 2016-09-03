@@ -9,26 +9,24 @@ Various amateur networks have since been developed based on this Cisco concept u
 
 The purpose of this dissector, actually two almost identical dissectors, is to allow convenient viewing of the Quantar V.24 protocol as carried by TCP or UDP.  The port used for Cisco STUN transport is usually 1994 and for UDP the port 23456 or 30000 is common.
 To make these dissectors work with Wireshark you need to edit the init.lua file found in the Wireshark install directory in Program Files (Windows):
-
-  Set disable_lua = false 
-  
+```
+Set disable_lua = false 
+```  
 Then at the very end of the file add:
+```
+QV24_TCP_SCRIPT_PATH="C:\\Plugins\\"
+dofile(QV24_TCP_SCRIPT_PATH.."QV24_TCP.lua")
 
-  QV24_TCP_SCRIPT_PATH="C:\\Plugins\\"
-  
-  dofile(QV24_TCP_SCRIPT_PATH.."QV24_TCP.lua")
-  
-  QV24_UDP_SCRIPT_PATH="C:\\Plugins\\"
-  
-  dofile(QV24_UDP_SCRIPT_PATH.."QV24_UDP.lua")
-  
-  
+QV24_UDP_SCRIPT_PATH="C:\\Plugins\\"
+dofile(QV24_UDP_SCRIPT_PATH.."QV24_UDP.lua")
+```  
+
 Where the path is wherever you’ve put the two dissector files.
 
-If you are using Linux, start Wireshark and go to Help -> About Wireshark -> Folders You need to know the global plugin folder and global configuaration folder. Copy the two dissector files into the global plugin folder. Check init.lua in the global configuration folder and make sure lua is enabled: 
-
+If you are using Linux, start Wireshark and go to Help -> About Wireshark -> Folders. You need to know the global plugin folder and global configuaration folder. Copy the two dissector files into the global plugin folder. Check init.lua in the global configuration folder and make sure lua is enabled: 
+```
 disable_lua = false
-
+```
 Then run Wireshark and go to Analyze > Enable Protocols and search down until you find the two QV24 entries and tick them.  Don’t untick all the other stuff. Enjoy.
 
 Note that works that make use of Wireshark's API are covered by GPL and therefore this code is provided under GPL.
