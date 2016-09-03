@@ -1,5 +1,6 @@
 # SQD
 Simple Quantar Dissector for Wireshark
+
 In 2012 a couple of Motorola enthusiasts, Astro Spectra and MattSR reverse engineered the protocol used by the Quantar base station product.  Astro and Quantar are registered trademarks of Motorola, Inc and/or Motorola Trademark Holdings, LLC.
 
 As P25 communications became popular with amateur radio operators, surplus Quantar equipment was pressed into service and the connection of these machines into small networks occured.  A barrier to wide area interconnection connection was the serial bit synchronous HDLC like protocol used by Motorola.  Enthusiast Astro Spectra published in 2013 a means to link Quantar stations together over IP for P25 digital only operation using off-the-shelf Cisco router hardware. 
