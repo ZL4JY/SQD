@@ -45,6 +45,7 @@ Value: LDU2 low speed data
 Value: ALGID
 Value: KeyID
 Value: Page target RID
-Flag: Voice 4 flag contains TGID/Voice 4 contains Call target RID
-Flag: encrypted/legacy encryption/no encryption/
+Value: MFID
+Flag: Link Control Format - $00= Voice 4 flag contains TGID, $03=Voice 4 contains Call target RID
+Flag: Encrypted/legacy encryption/no encryption/
 ```
