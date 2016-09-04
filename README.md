@@ -1,5 +1,5 @@
 # SQD
-Simple Quantar Dissector for Wireshark
+**Simple Quantar Dissector for Wireshark**
 
 In 2012 a couple of Motorola enthusiasts, Astro Spectra and MattSR reverse engineered the protocol used by the Quantar base station product.  Note that Astro and Quantar are registered trademarks of Motorola, Inc and/or Motorola Trademark Holdings, LLC.
 
