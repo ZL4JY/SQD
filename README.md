@@ -25,6 +25,11 @@ dofile(QV24_UDP_SCRIPT_PATH.."QV24_UDP.lua")
 
 Where the path is wherever you’ve put the two dissector files.
 
+If you want to use the QV24 UDP dissector for P25NX V2 trasnport then use:
+```
+dofile(QV24_UDP_SCRIPT_PATH.."QV24_UDP_P25NX.lua")
+```
+
 If you are using Linux, start Wireshark and go to Help -> About Wireshark -> Folders. You need to know the global plugin folder and global configuaration folder. Copy the two dissector files into the global plugin folder. Check init.lua in the global configuration folder and make sure lua is enabled: 
 ```
 disable_lua = false
