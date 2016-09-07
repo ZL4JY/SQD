@@ -1,6 +1,6 @@
 -- Simple Quantar Dissector UDP
 -- Copyright 2016 John Yaldwyn
--- Release version 1.1 September 2016 for testing
+-- Release version 1.2 September 2016 for testing
 -- This dissector contains the results of investigative work by:
 -- Matt Robert-Ames VK2LK, Tony Casciato KT9AC, John Yaldwyn ZL4JY,
 -- and anonymous contributors.
@@ -59,7 +59,7 @@ pkt.cols.protocol = p_QV24.name
 	pkt.cols.info = frametext
 --
 -- Create subtree for QV24
-  	subtree = root:add(p_QV24, buf(0))  
+  	subtree = root:add(p_QV24U, buf(0))  
 --
 -- Add protocol fields to subtree
 	subtree:append_text(": " .. frametext)
@@ -69,8 +69,9 @@ pkt.cols.protocol = p_QV24.name
 --
 -- Description of bits before and after IMBE codeword
 	if frame == 0x62 then 
-		subtree:append_text(" RSSI= ".. buf(6,1):uint())
+		subtree:append_text(" LDU1 RSSI= ".. buf(6,1):uint())
 		subtree:append_text(", inverse signal= ".. buf(8,1):uint())
+		subtree:append_text(", candidate adjusted MM= $".. buf(9,1))
 	end
 	if frame == 0x63 or frame == 0x6c then
 		subtree:append_text(" last byte= $".. buf(13,1))
@@ -78,11 +79,16 @@ pkt.cols.protocol = p_QV24.name
 	if frame == 0x64 then
 		if buf(1,1):uint() == 0x00 then subtree:append_text(" Voice 4 contains TGID,")
 		elseif buf(1,1):uint() == 0x03 then subtree:append_text(" Voice 4 contains Call target RID,")
-		else subtree:append_text(" function byte= $".. buf(1,1))
+		else subtree:append_text(" Link Control Format= $".. buf(1,1))
 		end
-		if buf(3,1):uint() == 0x40 then subtree:append_text(" encrypted")
-		elseif buf(3,1):uint() == 0x90 then subtree:append_text(" legacy encryption")
-		elseif buf(3,1):uint() == 0x00 then subtree:append_text(" no encryption")
+		if buf(2,1):uint() == 0x40 then subtree:append_text(" MFID= default")
+		elseif buf(2,1):uint() == 0x90 then subtree:append_text(" MFID= Motorola")
+		elseif buf(2,1):uint() == 0xD8 then subtree:append_text(" MFID= Tait")
+		else subtree:append_text(" MFID= $".. buf(2,1))
+		end
+		if buf(3,1):uint() == 0x40 then subtree:append_text(", encrypted")
+		elseif buf(2,1):uint() == 0x90 then subtree:append_text(", legacy encryption")
+		elseif buf(2,1):uint() == 0x00 then subtree:append_text(", no encryption")
 		end
 	end
 	if frame == 0x65 then 
@@ -94,6 +100,11 @@ pkt.cols.protocol = p_QV24.name
 	if frame == 0x6a then
 		subtree:append_text(" LDU1 low speed dat= $".. buf(1,2))
 		subtree:append_text(" last byte= $".. buf(15,1))
+	end
+	if frame == 0x6b then 
+		subtree:append_text(" LDU2 RSSI= ".. buf(6,1):uint())
+		subtree:append_text(", inverse signal= ".. buf(8,1):uint())
+		subtree:append_text(", candidate adjusted MM= $".. buf(9,1))
 	end
 	if frame == 0x70 then subtree:append_text(" ALGID= $".. buf(1,1))
 		if buf(1,1):uint() <= 0x7F then subtree:append_text(": Possible Type 1, be very afraid")
