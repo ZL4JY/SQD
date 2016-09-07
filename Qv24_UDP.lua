@@ -59,7 +59,7 @@ pkt.cols.protocol = p_QV24.name
 	pkt.cols.info = frametext
 --
 -- Create subtree for QV24
-  	subtree = root:add(p_QV24U, buf(0))  
+  	subtree = root:add(p_QV24, buf(0))  
 --
 -- Add protocol fields to subtree
 	subtree:append_text(": " .. frametext)
