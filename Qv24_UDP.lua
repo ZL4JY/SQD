@@ -81,7 +81,7 @@ pkt.cols.protocol = p_QV24.name
 		elseif buf(1,1):uint() == 0x03 then subtree:append_text(" Voice 4 contains Call target RID,")
 		else subtree:append_text(" Link Control Format= $".. buf(1,1))
 		end
-		if buf(2,1):uint() == 0x40 then subtree:append_text(" MFID= default")
+		if buf(2,1):uint() == 0x00 then subtree:append_text(" MFID= default")
 		elseif buf(2,1):uint() == 0x90 then subtree:append_text(" MFID= Motorola")
 		elseif buf(2,1):uint() == 0xD8 then subtree:append_text(" MFID= Tait")
 		else subtree:append_text(" MFID= $".. buf(2,1))
