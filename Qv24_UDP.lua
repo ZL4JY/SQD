@@ -8,7 +8,7 @@
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, see:
 -- http://www.gnu.org/licenses/
--- The use of Wireshark's API are covered by GPL
+-- The use of Wireshark's API are covered by GPL.
 -- The dissector looks at naked Quantar V.24 frames carried over UDP.
 --
 -- Create QV24 protocol and fields
