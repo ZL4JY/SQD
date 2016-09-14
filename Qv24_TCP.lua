@@ -2,7 +2,7 @@
 -- Copyright 2016 John Yaldwyn ZL4JY
 -- Release version 1.2 September 2016 for testing
 -- This dissector contains the resutls of investigative work by:
--- Matt Robert-Ames VK2LK, Tony Casciato KT9AC, John Yaldwyn ZL4JY,
+-- Matt Ames (né Robert) VK2LK, Tony Casciato KT9AC, John Yaldwyn ZL4JY,
 -- and anonymous contributors.
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
