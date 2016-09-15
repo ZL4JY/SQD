@@ -33,7 +33,7 @@ pkt.cols.protocol = p_QV24.name
 --
 	local frame = buf(9,1):uint()
 	local frametext = "undefined"
-	if frame == 0x00 then frametext = "Start" 
+	if frame == 0x00 then frametext = "Start, Source STUN ID= ".. buf(6,1):uint()
 	elseif frame == 0x60 then frametext = "Voice Header Part 1"
 	elseif frame == 0x61 then frametext = "Voice Header Part 2" 
 	elseif frame == 0x62 then frametext = "IMBE Voice 1" 
