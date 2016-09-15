@@ -30,10 +30,11 @@ pkt.cols.protocol = p_QV24T.name
 --
 -- 
 -- Frame type decoding, note offset to skip Cisco STUN encapsualtion
+-- Include STUN ID for ID at Start
 --
 	local frame = buf(9,1):uint()
 	local frametext = "undefined"
-	if frame == 0x00 then frametext = "Start" 
+	if frame == 0x00 then frametext = "Start, Source STUN ID= ".. buf(6,1):uint()
 	elseif frame == 0x60 then frametext = "Voice Header Part 1"
 	elseif frame == 0x61 then frametext = "Voice Header Part 2" 
 	elseif frame == 0x62 then frametext = "IMBE Voice 1" 
@@ -67,7 +68,7 @@ pkt.cols.info = frametext
 --
 -- Description of payload
 	subtree:append_text(", payload")
---
+--	
 -- Description of bits before and after IMBE codeword
 	if frame == 0x62 then 
 		subtree:append_text(" LDU1 RSSI= ".. buf(15,1):uint())
