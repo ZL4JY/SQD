@@ -134,7 +134,7 @@ pkt.cols.info = frametext
 		subtree:append_text(", KeyID: $".. buf(11,2))
 	end
 	if frame == 0xa1 then
-		subtree:append_text(" Page trget RID= ".. buf(22,3):uint())
+		subtree:append_text(" Page target RID= ".. buf(22,3):uint())
 	end
 	if frame == 0x73 then
 		subtree:append_text(" LDU2 low speed dat= $".. buf(10,2))
