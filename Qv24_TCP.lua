@@ -1,6 +1,6 @@
 -- Simple Quantar Dissector TCP
 -- Copyright 2016 John Yaldwyn ZL4JY
--- Release version 1.2 September 2016 for testing
+-- Release version 1.3 September 2016 for testing
 -- This dissector contains the resutls of investigative work by:
 -- Matt Ames (né Robert) VK2LK, Tony Casciato KT9AC, John Yaldwyn ZL4JY,
 -- and anonymous contributors.
@@ -93,7 +93,7 @@ pkt.cols.info = frametext
 		else subtree:append_text(" Link Control Format= $".. buf(10,1))
 		end
 		if buf(11,1):uint() == 0x00 then subtree:append_text(" MFID= default")
-		elseif buf(11,1):uint() == 0x40 then subtree:append_text(" MFID= Tait")
+		elseif buf(11,1):uint() == 0x40 then subtree:append_text(" MFID= Icom")
 		elseif buf(11,1):uint() == 0x90 then subtree:append_text(" MFID= Motorola")
 		elseif buf(11,1):uint() == 0xA4 then subtree:append_text(" MFID= Harris")
 		elseif buf(11,1):uint() == 0xD8 then subtree:append_text(" MFID= Tait")
