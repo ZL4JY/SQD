@@ -68,6 +68,15 @@ pkt.cols.protocol = p_QV24.name
   	subtree:append_text(", payload:")
 --
 -- Description of bits before and after IMBE codeword
+	if frame == 0x00 then  
+		if buf(2,1):uint() == 0x02 then subtree:append_text(", RT/RT enabled") 
+		elseif buf(2,1):uint() == 0x04 then subtree:append_text(", RT/RT disabled") 
+	end
+	if frame == 0x60 then  
+		if buf(2,1):uint() == 0x02 then subtree:append_text(", RT/RT enabled") 
+		elseif buf(2,1):uint() == 0x04 then subtree:append_text(", RT/RT disabled") 
+		end 
+	end
 	if frame == 0x62 then 
 		subtree:append_text(" LDU1 RSSI= ".. buf(6,1):uint())
 		subtree:append_text(", inverse signal= ".. buf(8,1):uint())
