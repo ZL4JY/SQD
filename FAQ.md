@@ -46,6 +46,7 @@ Value: ALGID
 Value: KeyID
 Value: Page target RID
 Value: MFID
+Flag: RT/RT mode in Start and Voice Header Part 1
 Flag: Link Control Format - $00= Voice 4 flag contains TGID, $03=Voice 4 contains Call target RID
 Flag: Encrypted/legacy encryption/no encryption/
 ```
