@@ -1,6 +1,6 @@
 -- Simple Quantar Dissector UDP for P25NX
 -- Copyright 2016 John Yaldwyn ZL4JY
--- Release version 1.2 September 2016 for testing
+-- Release version 1.3 September 2016 for testing
 -- This dissector contains the resutls of investigative work by:
 -- Matt Ames (né Robert) VK2LK, Tony Casciato KT9AC, John Yaldwyn ZL4JY,
 -- and anonymous contributors.
@@ -69,6 +69,15 @@ pkt.cols.info = frametext
 	subtree:append_text(", payload")
 --
 -- Description of bits before and after IMBE codeword
+	if frame == 0x00 then 
+		if buf(11,1):uint() == 0x02 then subtree:append_text(", RT/RT enabled")
+		elseif buf(11,1):uint() == 0x04 then subtree:append_text(", RT/RT disabled")
+		end
+	endif frame == 0x60 then 
+		if buf(11,1):uint() == 0x02 then subtree:append_text(", RT/RT enabled")
+		elseif buf(11,1):uint() == 0x04 then subtree:append_text(", RT/RT disabled")
+		end
+	end
 	if frame == 0x62 then 
 		subtree:append_text(" LDU1 RSSI= ".. buf(15,1):uint())
 		subtree:append_text(", inverse signal= ".. buf(17,1):uint())
@@ -83,7 +92,9 @@ pkt.cols.info = frametext
 		else subtree:append_text(" Link Control Format= $".. buf(10,1))
 		end
 		if buf(11,1):uint() == 0x00 then subtree:append_text(" MFID= default")
+		elseif buf(11,1):uint() == 0x40 then subtree:append_text(" MFID= Icom")
 		elseif buf(11,1):uint() == 0x90 then subtree:append_text(" MFID= Motorola")
+		elseif buf(11,1):uint() == 0xA4 then subtree:append_text(" MFID= Harris")
 		elseif buf(11,1):uint() == 0xD8 then subtree:append_text(" MFID= Tait")
 		else subtree:append_text(" MFID= $".. buf(11,1))
 		end
