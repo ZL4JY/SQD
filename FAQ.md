@@ -32,6 +32,8 @@ IMBE Voice 17 + Encryption Sync
 IMBE Voice 18 + Low Speed Data
 Page call frame
 ```
+Page call frame now handles emergency calls and shows TGID.  Do not use this for real emergency decoding as this is based on empirical and unverified testing.
+
 Current list of parameters dissected:
 ```
 Value: RSSI
