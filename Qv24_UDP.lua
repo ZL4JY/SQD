@@ -1,6 +1,6 @@
 -- Simple Quantar Dissector UDP
 -- Copyright 2016 John Yaldwyn
--- Release version 1.3 September 2016 for testing
+-- Release version 1.4 September 2016 for testing
 -- This dissector contains the results of investigative work by:
 -- Matt Ames (né Robert) VK2LK, Tony Casciato KT9AC, John Yaldwyn ZL4JY,
 -- and anonymous contributors.
@@ -133,7 +133,13 @@ pkt.cols.protocol = p_QV24.name
 		subtree:append_text(", KeyID: $".. buf(2,2))
 	end
 	if frame == 0xa1 then
-		subtree:append_text(" Page target RID= ".. buf(13,3):uint())
+		if buf(9,1):uint() == 0x9F then
+			subtree:append_text("Page, RID= ".. buf(13,3):uint())
+			subtree:append_text(", TGID= ".. buf(17,2):uint())
+		elseif buf(9,1):uint() == 0xA7 then
+			subtree:append_text(" EMERGENCY, RID= ".. buf(16,3):uint())
+			subtree:append_text(", TGID= ".. buf(14,2):uint())
+		end
 	end
 	if frame == 0x73 then
 		subtree:append_text(" LDU2 low speed dat= $".. buf(1,2))
