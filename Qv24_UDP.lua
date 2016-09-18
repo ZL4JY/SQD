@@ -80,11 +80,8 @@ pkt.cols.protocol = p_QV24.name
 		end
 	end
 	if frame == 0x60 then
- 		if buf(3,1):uint() == 0x0c then subtree:append_text(", ICW start")
-		elseif buf(3,1):uint() == 0x25 then subtree:append_text(", ICW terminate")
-		end
-		if buf(2,1):uint() == 0x02 then subtree:append_text(", RT/RT enabled")
-		elseif buf(2,1):uint() == 0x04 then subtree:append_text(", RT/RT disbaled")
+ 		if buf(2,1):uint() == 0x02 then subtree:append_text(" RT/RT enabled")
+		elseif buf(2,1):uint() == 0x04 then subtree:append_text(" RT/RT disbaled")
 		end
 		if buf(4,1):uint() == 0x0b then subtree:append_text(", Voice")
 		elseif buf(4,1):uint() == 0x0f then subtree:append_text(", Page")
