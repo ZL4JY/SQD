@@ -30,6 +30,7 @@ pkt.cols.protocol = p_QV24.name
 --
 -- 
 -- Frame type decoding, note offset to skip Cisco STUN encapsualtion
+-- Include STUN ID for ID at Start
 --
 	local frame = buf(9,1):uint()
 	local frametext = "undefined"
