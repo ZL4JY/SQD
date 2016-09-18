@@ -82,19 +82,27 @@ pkt.cols.info = frametext
 		end
 	end
 	if frame == 0x60 then
- 		if buf(12,1):uint() == 0x0c then subtree:append_text(", ICW start")
-		elseif buf(12,1):uint() == 0x25 then subtree:append_text(", ICW terminate")
+ 		if buf(14,1):uint() == 0x00 then subtree:append_text(" DIU 3000,")
+		elseif buf(14,1):uint() == 0x1b then subtree:append_text(" Quantar,")
 		end
-		if buf(11,1):uint() == 0x02 then subtree:append_text(", RT/RT enabled")
-		elseif buf(11,1):uint() == 0x04 then subtree:append_text(", RT/RT disbaled")
+ 		if buf(11,1):uint() == 0x02 then subtree:append_text(" RT/RT enabled")
+		elseif buf(11,1):uint() == 0x04 then subtree:append_text(" RT/RT disbaled")
 		end
 		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice")
 		elseif buf(13,1):uint() == 0x0f then subtree:append_text(", Page")
 		end
+		subtree:append_text(" LDU1 RSSI= ".. buf(15,1):uint())
+		subtree:append_text(", inverse signal= ".. buf(17,1):uint())
 	end
 	if frame == 0x62 then 
 		if buf(14,1):uint() == 0x00 then subtree:append_text(" DIU 3000,")
 		elseif buf(14,1):uint() == 0x1b then subtree:append_text(" Quantar,")
+		end
+		if buf(11,1):uint() == 0x02 then subtree:append_text(" RT/RT enabled")
+		elseif buf(11,1):uint() == 0x04 then subtree:append_text(" RT/RT disbaled")
+		end
+		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice")
+		elseif buf(13,1):uint() == 0x0f then subtree:append_text(", Page")
 		end
 		subtree:append_text(" LDU1 RSSI= ".. buf(15,1):uint())
 		subtree:append_text(", inverse signal= ".. buf(17,1):uint())
@@ -133,6 +141,12 @@ pkt.cols.info = frametext
 	if frame == 0x6b then 
 		if buf(14,1):uint() == 0x00 then subtree:append_text(" DIU 3000,")
 		elseif buf(14,1):uint() == 0x1b then subtree:append_text(" Quantar,")
+		end
+		if buf(11,1):uint() == 0x02 then subtree:append_text(" RT/RT enabled")
+		elseif buf(11,1):uint() == 0x04 then subtree:append_text(" RT/RT disbaled")
+		end
+		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice")
+		elseif buf(13,1):uint() == 0x0f then subtree:append_text(", Page")
 		end
 		subtree:append_text(" LDU2 RSSI= ".. buf(15,1):uint())
 		subtree:append_text(", inverse signal= ".. buf(17,1):uint())
