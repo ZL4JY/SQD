@@ -13,7 +13,7 @@
 --
 -- Create QV24 protocol and its fields
 --
-p_QV24T = Proto ("QV24_UDP_P25NX","Quantar V.24 over UDP P25NX")
+p_QV24 = Proto ("QV24_UDP_P25NX","Quantar V.24 over UDP P25NX")
 local f_command = ProtoField.uint16("QV24.command", "Command", base.HEX)
 local f_data = ProtoField.string("QV24.data", "Data", FT_STRING)
 -- 
