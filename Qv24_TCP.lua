@@ -1,6 +1,6 @@
 -- Simple Quantar Dissector TCP
 -- Copyright 2016 John Yaldwyn ZL4JY
--- Release version 1.3 September 2016 for testing
+-- Release version 1.5 September 2016 for testing
 -- This dissector contains the resutls of investigative work by:
 -- Matt Ames (né Robert) VK2LK, Tony Casciato KT9AC, John Yaldwyn ZL4JY,
 -- and anonymous contributors.
@@ -34,7 +34,10 @@ pkt.cols.protocol = p_QV24T.name
 --
 	local frame = buf(9,1):uint()
 	local frametext = "undefined"
-	if frame == 0x00 then frametext = "Start, Source STUN ID= ".. buf(6,1):uint()
+	if frame == 0x00 then
+		if buf(12,1):uint() == 0x0c then frametext = "ICW start, Source STUN ID= ".. buf(6,1):uint()
+		elseif buf(12,1):uint() == 0x25 then frametext = "ICW terminate"
+	end
 	elseif frame == 0x60 then frametext = "Voice Header Part 1"
 	elseif frame == 0x61 then frametext = "Voice Header Part 2" 
 	elseif frame == 0x62 then frametext = "IMBE Voice 1" 
@@ -68,18 +71,31 @@ pkt.cols.info = frametext
 --
 -- Description of payload
 	subtree:append_text(", payload")
---	
+--
 -- Description of bits before and after IMBE codeword
-	if frame == 0x00 then 
-		if buf(11,1):uint() == 0x02 then subtree:append_text(", RT/RT enabled")
-		elseif buf(11,1):uint() == 0x04 then subtree:append_text(", RT/RT disabled")
+	if frame == 0x00 then
+ 		if buf(11,1):uint() == 0x02 then subtree:append_text(" RT/RT enabled")
+		elseif buf(11,1):uint() == 0x04 then subtree:append_text(" RT/RT disbaled")
 		end
-	endif frame == 0x60 then 
+		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice")
+		elseif buf(13,1):uint() == 0x0f then subtree:append_text(", Page")
+		end
+	end
+	if frame == 0x60 then
+ 		if buf(12,1):uint() == 0x0c then subtree:append_text(", ICW start")
+		elseif buf(12,1):uint() == 0x25 then subtree:append_text(", ICW terminate")
+		end
 		if buf(11,1):uint() == 0x02 then subtree:append_text(", RT/RT enabled")
-		elseif buf(11,1):uint() == 0x04 then subtree:append_text(", RT/RT disabled")
+		elseif buf(11,1):uint() == 0x04 then subtree:append_text(", RT/RT disbaled")
+		end
+		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice")
+		elseif buf(13,1):uint() == 0x0f then subtree:append_text(", Page")
 		end
 	end
 	if frame == 0x62 then 
+		if buf(14,1):uint() == 0x00 then subtree:append_text(" DIU 3000,")
+		elseif buf(14,1):uint() == 0x1b then subtree:append_text(" Quantar,")
+		end
 		subtree:append_text(" LDU1 RSSI= ".. buf(15,1):uint())
 		subtree:append_text(", inverse signal= ".. buf(17,1):uint())
 		subtree:append_text(", candidate adjusted MM= $".. buf(18,1))
@@ -115,6 +131,9 @@ pkt.cols.info = frametext
 		subtree:append_text(" last byte= $".. buf(24,1))
 	end
 	if frame == 0x6b then 
+		if buf(14,1):uint() == 0x00 then subtree:append_text(" DIU 3000,")
+		elseif buf(14,1):uint() == 0x1b then subtree:append_text(" Quantar,")
+		end
 		subtree:append_text(" LDU2 RSSI= ".. buf(15,1):uint())
 		subtree:append_text(", inverse signal= ".. buf(17,1):uint())
 		subtree:append_text(", candidate adjusted MM= $".. buf(18,1))
@@ -135,7 +154,13 @@ pkt.cols.info = frametext
 		subtree:append_text(", KeyID: $".. buf(11,2))
 	end
 	if frame == 0xa1 then
-		subtree:append_text(" Page target RID= ".. buf(22,3):uint())
+		if buf(18,1):uint() == 0x9F then
+			subtree:append_text("Page, RID= ".. buf(22,3):uint())
+			subtree:append_text(", TGID= ".. buf(26,2):uint())
+		elseif buf(18,1):uint() == 0xA7 then
+			subtree:append_text(" EMERGENCY, RID= ".. buf(25,3):uint())
+			subtree:append_text(", TGID= ".. buf(23,2):uint())
+		end	
 	end
 	if frame == 0x73 then
 		subtree:append_text(" LDU2 low speed dat= $".. buf(10,2))
