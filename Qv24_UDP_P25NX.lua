@@ -101,7 +101,7 @@ pkt.cols.info = frametext
 		if buf(11,1):uint() == 0x02 then subtree:append_text(" RT/RT enabled")
 		elseif buf(11,1):uint() == 0x04 then subtree:append_text(" RT/RT disbaled")
 		end
-		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice")
+		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice,")
 		elseif buf(13,1):uint() == 0x0f then subtree:append_text(", Page")
 		end
 		subtree:append_text(" LDU1 RSSI= ".. buf(15,1):uint())
@@ -145,7 +145,7 @@ pkt.cols.info = frametext
 		if buf(11,1):uint() == 0x02 then subtree:append_text(" RT/RT enabled")
 		elseif buf(11,1):uint() == 0x04 then subtree:append_text(" RT/RT disbaled")
 		end
-		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice")
+		if buf(13,1):uint() == 0x0b then subtree:append_text(", Voice,")
 		elseif buf(13,1):uint() == 0x0f then subtree:append_text(", Page")
 		end
 		subtree:append_text(" LDU2 RSSI= ".. buf(15,1):uint())
