@@ -5,7 +5,7 @@
 **Intellectual property:** As far as the author is aware there is no publicly available documentation on the Quantar V.24 protocol. Yes, the protocol is proprietary but reverse-engineering a protocol is legitimate, particularly in order to achieve interoperability.  Hardly legal advice but refer:
 https://en.wikipedia.org/wiki/Reverse_engineering
 
-**Restrictions:** This implementation as further detailed below is based on the Quantar TR/TR mode. At present SQD does not dissect Quantar to DIU or Quantar to comparator operation, but future extensions are possible.
+**Restrictions:** This implementation as further detailed below is based on the Quantar RT/RT configuration mode. At present SQD does only basic dissection of Quantar to DIU or Quantar to comparator operation, but future extensions are possible.
 
 Current list of Frame Types dissected (named (mostly) according to the TIA Project 25, Fixed Station Interface Messages and Procedures, standard TIA-102.BAHA):
 ```
