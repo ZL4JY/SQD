@@ -1,9 +1,9 @@
 -- Simple Quantar Dissector UDP for P25NX
 -- Copyright 2016 John Yaldwyn ZL4JY
--- Release version 1.5 September 2016 for testing
+-- Release version 2 November 2016 for testing
 -- This dissector contains the resutls of investigative work by:
 -- Matt Ames (né Robert) VK2LK, Tony Casciato KT9AC, John Yaldwyn ZL4JY,
--- and anonymous contributors.
+-- and anonymous contributors.  Input also from DG9BEW.
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
 -- the Free Software Foundation, either version 3 of the License, see:
