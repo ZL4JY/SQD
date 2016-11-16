@@ -7,7 +7,7 @@ Note that Astro and Quantar are registered trademarks of Motorola, Inc and/or Mo
 
 Various amateur networks have since been developed based on this Cisco concept using cheap routers to encapsulate the native Quantar V.24 HDLC into frames, using the Cisco serial tunnelling protocol called STUN (not to be confused with the session traversal utility for NAT).  STUN conveys the encapsulated V.24 over an IP network, most often the Internet, using TCP.  Methods to do the same thing using UDP usually retain the Cisco router to encapsulate V.24 then convert TCP to UDP by some means, usually software on a Linux platform. As UDP the V.24 frames are usually 'naked' in that the STUN encapsualtion wrapper is discarded. UDP is often used in multicast mode over a GRE tunnel or VPN.
 
-The purpose of this dissector, actually a set of almost identical dissectors, is to allow convenient viewing of the Quantar V.24 protocol as carried by TCP or UDP.  The port used for Cisco STUN transport is usually 1994 and for UDP the port 23456 or 30000 is common.  To make these dissectors work with Wireshark you need to edit the init.lua file found in the Wireshark install directory in Program Files (Windows).
+The purpose of this dissector, actually a set of almost identical dissectors, is to allow convenient viewing of the Quantar V.24 protocol as carried by TCP or UDP.  The port used for Cisco STUN transport is usually 1994 and for UDP the port 23456 or 30000 is common.  However, the use UDP can be either naked as noted above or retaiend in the Cisco STUN wrapper.  To make these dissectors work with Wireshark you need to edit the init.lua file found in the Wireshark install directory in Program Files (Windows).
 
 Set:
 ```
@@ -16,18 +16,14 @@ disable_lua = false
 Then at the very end of the file add:
 ```
 QV24_TCP_SCRIPT_PATH="C:\\Plugins\\"
-dofile(QV24_TCP_SCRIPT_PATH.."QV24_TCP.lua")
-
-QV24_UDP_SCRIPT_PATH="C:\\Plugins\\"
 dofile(QV24_UDP_SCRIPT_PATH.."QV24_UDP.lua")
 ```  
-
+If you want to use the QV24 dissector for P25NX style trasnport then use:
+```
+QV24_UDP_SCRIPT_PATH="C:\\Plugins\\"
+dofile(QV24_UDP_SCRIPT_PATH.."QV24_P25NX.lua")
+```
 Where the path is wherever you’ve put the two dissector files.
-
-If you want to use the QV24 UDP dissector for P25NX V2 trasnport then use:
-```
-dofile(QV24_UDP_SCRIPT_PATH.."QV24_UDP_P25NX.lua")
-```
 
 If you are using Linux, start Wireshark and go to Help -> About Wireshark -> Folders. You need to know the global plugin folder and global configuaration folder. Copy the two dissector files into the global plugin folder. Check init.lua in the global configuration folder and make sure lua is enabled: 
 ```
