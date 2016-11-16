@@ -117,7 +117,7 @@ local hdr_fields =
                                                 ),
     p25_frametype =             ProtoField.new (
                                        "Frame Type",
-                                        "p25.frametype",
+                                        "qv24_p25nx.frametype",
                                         ftypes.UINT8,
                                         {
                                             [0x00] = "NID Start/Stop",
@@ -145,25 +145,25 @@ local hdr_fields =
                                         },
                                         base.HEX
                                     ),
-    p25_rt_rt_enabled =         ProtoField.new ("RT/RT enabled", "p25.rt_rt", ftypes.UINT8, {
+    p25_rt_rt_enabled =         ProtoField.new ("RT/RT enabled", "qv24_p25nx.rt_rt", ftypes.UINT8, {
                                             [0x02] = "RT/RT enabled",
                                             [0x04] = "RT/RT disabled",
                                         }, base.HEX),
-    p25_site_number =           ProtoField.new ("Site Number", "p25.site_number", ftypes.UINT8, {
+    p25_site_number =           ProtoField.new ("Site Number", "qv24_p25nx.site_number", ftypes.UINT8, {
                                             [0x1b] = "Quantar",
                                             [0x00] = "DIU 3000",
                                         }, base.HEX),
-    p25_voice_page =            ProtoField.new ("Voice/Page", "p25.voice_page", ftypes.UINT8, {
+    p25_voice_page =            ProtoField.new ("Voice/Page", "qv24_p25nx.voice_page", ftypes.UINT8, {
                                             [0x0b] = "Voice",
                                             [0x0f] = "Page",
                                         }, base.HEX),
-    p25_rssi =                  ProtoField.new ("RSSI", "p25.rssi" , ftypes.UINT8),
-    p25_inverse_signal =        ProtoField.new ("Inverse Signal", "p25.inverse_signal" , ftypes.UINT8),
-    p25_candidate_adj_mm =      ProtoField.new ("Candidate adjusted MM", "p25.candidate_adj_mm", ftypes.UINT8),
-    p25_last_byte =             ProtoField.new ("Last Byte", "p25.last_byte", ftypes.UINT8),
+    p25_rssi =                  ProtoField.new ("RSSI", "qv24_p25nx.rssi" , ftypes.UINT8),
+    p25_inverse_signal =        ProtoField.new ("Inverse Signal", "qv24_p25nx.inverse_signal" , ftypes.UINT8),
+    p25_candidate_adj_mm =      ProtoField.new ("Candidate adjusted MM", "qv24_p25nx.candidate_adj_mm", ftypes.UINT8),
+    p25_last_byte =             ProtoField.new ("Last Byte", "qv24_p25nx.last_byte", ftypes.UINT8),
     p25_lcf =                   ProtoField.new (
                                         "Link Control Format", 
-                                        "p25.lcf", 
+                                        "qv24_p25nx.lcf", 
                                         ftypes.UINT8, 
                                         {
                                             [0x00] = "Group Voice Channel User",
@@ -224,7 +224,7 @@ local hdr_fields =
                                     ),
     p25_lcf_protected_flag =    ProtoField.new (
                                         "Protected Flag", 
-                                        "p25.lcf_protected_flag", 
+                                        "qv24_p25nx.lcf_protected_flag", 
                                         ftypes.UINT8, 
                                         {
                                             [0] = "Not encrypted",
@@ -235,7 +235,7 @@ local hdr_fields =
                                     ),
     p25_lcf_mfid_format =       ProtoField.new (
                                         "Implicit / Explicit MFID Format", 
-                                        "p25.lcf_mfid_format", 
+                                        "qv24_p25nx.lcf_mfid_format", 
                                         ftypes.UINT8, 
                                         {
                                             [0] = "Implicit, MFID 0 is implied",
@@ -246,7 +246,7 @@ local hdr_fields =
                                     ),
     p25_lcf_link_control_opcode = ProtoField.new (
                                         "Link Control Opcode", 
-                                        "p25.lcf_link_control_opcode", 
+                                        "qv24_p25nx.lcf_link_control_opcode", 
                                         ftypes.UINT8, 
                                         {},
                                         base.HEX, 
@@ -254,7 +254,7 @@ local hdr_fields =
                                     ),
     p25_mfid =                  ProtoField.new (
                                         "Manufacturer's ID", 
-                                        "p25.mfid", 
+                                        "qv24_p25nx.mfid", 
                                         ftypes.UINT8, 
                                         {
                                             [0x00] = "default value",
@@ -299,7 +299,7 @@ local hdr_fields =
                                     ),
     p25_service_options =           ProtoField.new (
                                         "Service Options", 
-                                        "p25.service_options", 
+                                        "qv24_p25nx.service_options", 
                                         ftypes.UINT8, 
                                         {},
                                         base.HEX, 
@@ -307,7 +307,7 @@ local hdr_fields =
                                     ),
     p25_service_options_emergency = ProtoField.new (
                                         "Emergency Flag", 
-                                        "p25.service_options_emergency", 
+                                        "qv24_p25nx.service_options_emergency", 
                                         ftypes.UINT8, 
                                         {
                                             [0] = "Normal or non-emergency status",
@@ -318,7 +318,7 @@ local hdr_fields =
                                     ),
     p25_service_options_protected = ProtoField.new (
                                         "Protected Flag", 
-                                        "p25.service_options_protected", 
+                                        "qv24_p25nx.service_options_protected", 
                                         ftypes.UINT8, 
                                         {
                                             [0] = "non protected mode",
@@ -329,7 +329,7 @@ local hdr_fields =
                                     ),
     p25_service_options_duplex =    ProtoField.new (
                                         "Duplex Flag", 
-                                        "p25.service_options_duplex", 
+                                        "qv24_p25nx.service_options_duplex", 
                                         ftypes.UINT8, 
                                         {
                                             [0] = "half duplex, the subscriber unit will be capable of transmitting but not simultaneously receiving on the assigned channel",
@@ -340,7 +340,7 @@ local hdr_fields =
                                     ),
     p25_service_options_mode =      ProtoField.new (
                                         "Data Mode Flag", 
-                                        "p25.service_options_mode", 
+                                        "qv24_p25nx.service_options_mode", 
                                         ftypes.UINT8, 
                                         {
                                             [0] = "circuit mode - the resources shall support circuit switch operation",
@@ -351,7 +351,7 @@ local hdr_fields =
                                     ),
     p25_service_options_priority =  ProtoField.new (
                                         "Priority", 
-                                        "p25.service_options_priority", 
+                                        "qv24_p25nx.service_options_priority", 
                                         ftypes.UINT8, 
                                         {},
                                         base.HEX, 
@@ -359,7 +359,7 @@ local hdr_fields =
                                     ),
     p25_target_address =            ProtoField.new (
                                         "Target Address/Radio ID", 
-                                        "p25.target_address", 
+                                        "qv24_p25nx.target_address", 
                                         ftypes.UINT24, 
                                         {
                                             [1]     = "Local",
@@ -390,28 +390,28 @@ local hdr_fields =
                                     ),
     p25_source_address =            ProtoField.new (
                                         "Source Address/Radio ID", 
-                                        "p25.source_address", 
+                                        "qv24_p25nx.source_address", 
                                         ftypes.UINT24, 
                                         p25_radio_ids,
                                         base.DEC
                                     ),
     p25_low_speed_data =            ProtoField.new (
                                         "Low speed data", 
-                                        "p25.low_speed_data", 
+                                        "qv24_p25nx.low_speed_data", 
                                         ftypes.UINT16, 
                                         {},
                                         base.HEX
                                     ),
     p25_enc_iv =                    ProtoField.new (
                                         "Encryption initialization vector/Message Indicator", 
-                                        "p25.enc_iv", 
+                                        "qv24_p25nx.enc_iv", 
                                         ftypes.BYTES, 
                                         {},
                                         base.NONE
                                     ),
     p25_algid =                     ProtoField.new (
                                         "Algorithm ID", 
-                                        "p25.algid", 
+                                        "qv24_p25nx.algid", 
                                         ftypes.UINT8, 
                                         {
                                             [0x00] = "ACCORDION 1.3",
@@ -435,7 +435,7 @@ local hdr_fields =
                                     ),
     p25_keyid =                     ProtoField.new (
                                         "Key ID", 
-                                        "p25.keyid", 
+                                        "qv24_p25nx.keyid", 
                                         ftypes.UINT16, 
                                         {},
                                         base.HEX
